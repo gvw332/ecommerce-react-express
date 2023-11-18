@@ -1,0 +1,86 @@
+/* Styles for the Inscription component */
+
+/* Styles for the parent container of the entire Inscription component */
+.inscription-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-image: url('../../public/images/fond-ecran.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed; /* Ceci fixe l'arrière-plan par rapport à la fenêtre d'affichage */
+    padding-top: 50px;
+  }
+  
+  /* Styles for the title "Inscription" */
+  .inscription-page h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Styles for the form container */
+  .inscription-page form {
+    width: 300px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Styles for the input containers */
+  .inscription-page .champ-prenom,
+  .inscription-page .champ-nom,
+  .inscription-page .champ-email,
+  .inscription-page .champ-mdp,
+  .inscription-page .champ-mdp-bis {
+    margin-bottom: 15px;
+  }
+  
+  /* Styles for the labels */
+  .inscription-page .champ-prenom label,
+  .inscription-page .champ-nom label,
+  .inscription-page .champ-email label,
+  .inscription-page .champ-mdp label 
+  .inscription-page .champ-mdp-bis label{
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  /* Styles for the input fields */
+  .inscription-page .champ-prenom input,
+  .inscription-page .champ-nom input,
+  .inscription-page .champ-email input,
+  .inscription-page .champ-mdp input ,
+  .inscription-page .champ-mdp-bis input{
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Styles for the "S'inscrire" button */
+  .inscription-page button {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  /* Styles for the "S'inscrire" button on hover */
+  .inscription-page button:hover {
+    background: #0056b3;
+  }
+  
+  .error-inscription{
+    color:red;
+    padding:10px;
+  }

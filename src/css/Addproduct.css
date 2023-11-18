@@ -1,0 +1,67 @@
+.Addproduct-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height:100vh;
+    background-image: url('../../public/images/fond-ecran.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed; /* Ceci fixe l'arrière-plan par rapport à la fenêtre d'affichage */
+  }
+  
+  .Addproduct-page h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .Addproduct-page form {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .Addproduct-page form div {
+    margin: 10px 0;
+  }
+  
+  .Addproduct-page label {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .Addproduct-page input,
+  .Addproduct-page textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .Addproduct-page .ajout-image img{
+    width:auto;
+    height:300px;
+    
+  }
+
+  
+  .Addproduct-page button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .Addproduct-page button:hover {
+    background-color: #0056b3;
+    font-size: 1em;
+  }
+  

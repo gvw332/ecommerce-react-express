@@ -1,0 +1,91 @@
+
+/* Styles for the Login component */
+
+/* Styles for the parent container of the entire Login component */
+.login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background-image: url('../../public/images/fond-ecran.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed; /* Ceci fixe l'arrière-plan par rapport à la fenêtre d'affichage */
+  padding-top: 50px;
+}
+
+/* Styles for the title "Connexion" */
+.login-page h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Styles for the form container */
+.login-page form {
+  width: 300px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for the email and password input containers */
+.login-page .champ-email,
+.login-page .champ-mdp {
+  margin-bottom: 15px;
+}
+
+/* Styles for the labels "Email" and "Mot de passe" */
+.login-page .champ-email label,
+.login-page .champ-mdp label {
+  font-size: 16px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* Styles for the email and password input fields */
+.login-page .champ-email input,
+.login-page .champ-mdp input {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.link-mdp a,.link-inscri a{
+  width:100%;
+  
+  margin:10px auto;
+  
+  padding:5px;
+}
+.link-mdp a,.link-inscri a{
+  color:rgb(43, 52, 131);
+}
+
+/* Styles for the "Se connecter" button */
+.login-page button {
+  width: 100%;
+  padding: 10px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Styles for the "Se connecter" button on hover */
+.login-page button:hover {
+  background: #0056b3;
+}
+
+.error-login{
+  color:red;
+  
+  text-align: center;
+  padding:10px;
+}

@@ -1,0 +1,114 @@
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background:#1a1d33f6;
+   
+    color: #fff;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+
+
+.logo {
+    text-decoration: none;
+    background-image: url("/images/logo-small.jpg");
+    background-repeat: no-repeat;
+    width: 125px;
+    height: 125px;
+    object-fit: contain;
+    border-radius: 10%;
+    /* border: 3px solid rgb(210, 226, 85); */
+    color:white;
+
+}
+
+.bienvenue h5 {
+    font-size: 1.1em;
+
+    padding-right: 5px;
+}
+
+.auth {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.auth button {
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.auth button:hover {
+    background-color: #007bff;
+    cursor: pointer;
+    color: white;
+
+}
+
+.cart-button {
+    padding: 0 8px 0 8px;
+
+    border-radius: 5px;
+    margin-top: 4px;
+    height: 36px;
+    /* Réglez la taille de l'icône 
+    selon vos besoins */
+    display: inline-flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    text-decoration: none !important;
+
+}
+
+
+
+.panier-nav {
+    text-decoration: none;
+    color: #06F8F9;
+    font-size: 26px;
+    position: relative;
+
+}
+
+.total-panier-nav {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 26px;
+    font-size: 1.2em;
+    top: 45px;
+
+    text-decoration: none;
+    color: #06F8F9;
+    background-color: red;
+    border-radius: 50%;
+    color: white;
+
+}
+
+@media only screen and (max-width: 600px) {
+    nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .total-panier-nav {
+        top: 135px;
+        margin-left: 4px;
+        ;
+
+    }
+}
