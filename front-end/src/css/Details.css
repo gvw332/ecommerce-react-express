@@ -1,13 +1,18 @@
 .details{
-    background: #f2f2f2;
-    height:100vh;
+    background-image: url('../../public/images/fond-ecran.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed; /* Ceci fixe l'arrière-plan par rapport à la fenêtre d'affichage */
+    height: 100%;
+    
     text-align: center;
-    padding:50px;
+    
 }
 
 .details img{
-width:auto;
-margin:auto;
+width: 30%;
+margin:50px auto;
 
 }
 

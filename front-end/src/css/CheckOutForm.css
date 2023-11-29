@@ -1,5 +1,6 @@
 #payment-form {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: flex-start;
     padding: 20px;
@@ -18,24 +19,42 @@
     font-size: 1.5em;
     color: #333;
     margin-bottom: 15px;
+    text-align: center;
   }
   
-  .bloc-gauche {
+  .bloc-details-panier {
     list-style: none;
     padding: 0;
+    text-align: center;
   }
   
   .largeur-ligne {
-    border-bottom: 1px solid #eee;
-    padding: 10px 0;
-    color: #666;
+    /* Ajoutez ici vos styles pour .largeur-ligne */
   }
+  
+  .largeur-ligne table {
+    width: 100%;
+    border-collapse: collapse; /* Pour enlever l'espace entre les bordures */
+  }
+  
+  .largeur-ligne th, .largeur-ligne td {
+    border: 1px solid #ddd; /* Ajoute une bordure */
+    padding: 8px; /* Ajoute un peu d'espace autour du texte */
+    text-align: left; /* Alignement du texte à gauche */
+  }
+  
+  .largeur-ligne img.img-panier {
+    width: 50px; /* Taille de l'image, à ajuster selon les besoins */
+    height: auto; /* Garde le ratio de l'image */
+  }
+  
   
   .total {
     font-weight: bold;
     font-size: 1.2em;
     color: #333;
     padding-top: 15px;
+    text-align: center;
   }
   
   #payment-element {

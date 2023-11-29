@@ -64,4 +64,10 @@
     background-color: #0056b3;
     font-size: 1em;
   }
-  
+  .error-title{
+    font-size: 1.4em;
+    color:red;
+    background-color: #cccccc86;
+    
+    font-weight: 600;
+  }

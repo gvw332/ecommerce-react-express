@@ -60,4 +60,8 @@
 
   }
 
- 
+  .card .btn-delete-produit{
+  background-color: red;
+  color:white;
+  margin-top: 7px;
+ }

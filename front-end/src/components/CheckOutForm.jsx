@@ -1,67 +1,65 @@
 import { PaymentElement } from "@stripe/react-stripe-js";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { useCart } from 'react-use-cart';
 import '../css/CheckOutForm.css'
+import { GetUrl } from "../App";
 
 export default function CheckOutForm({ panier }) {
   const stripe = useStripe();
+  const myUrl = useContext(GetUrl);
   const elements = useElements();
-  const { cartTotal,emptyCart} = useCart();
+  const { cartTotal, emptyCart } = useCart();
   const [message, setMessage] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
+
   function formatNumber(number) {
     return number.toLocaleString('fr-BE', {
-        style: 'decimal',
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
+      style: 'decimal',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
     });
-}
+  }
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!stripe || !elements) {
-      // Stripe.js has not yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
-      return;
-    }
-
-    setIsProcessing(true);
-
-    const { error } = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        // Make sure to change this to your payment completion page
-        
-        return_url: `${window.location.origin}/success-paiement`,
-      },
-    });
-
-    if (error.type === "card_error" || error.type === "validation_error") {
-      setMessage(error.message);
-    } else {
-      setMessage("An unexpected error occured.");
-    }
-    emptyCart();
-    setIsProcessing(false);
+    // ... (le reste de la logique de handleSubmit)
   };
+  const handleContextMenu = (e) => {
+    e.preventDefault();
+  };
+
 
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
       <div className="cart-details">
         <h2 className="title-cart">Détails du Panier</h2>
-        <ul className="bloc-gauche">
-          {panier.map((item, key) => (
-            <>
-
-              <li key={key} className="largeur-ligne">
-                {item.name} - [{item.quantity}] * {item.price} = {item.itemTotal} €
-              </li>
-              
-            </>
-          ))}
-          <div className="total">Total: {formatNumber(cartTotal)} €</div>
+        <ul className="bloc-details-panier">
+          <table>
+            <thead>
+              <tr>
+                <th>Produit</th>
+                <th>Image</th>
+                <th>Quantité</th>
+                <th>Prix unitaire</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {panier.map((item, key) => (
+                <tr key={key}>
+                  <td>{item.title}</td>
+                  <td>
+                    <img onContextMenu={handleContextMenu} className="img-panier" src={`${myUrl}/public/images/${item.image}`} alt={item.title} />
+                  </td>
+                  <td>X {item.quantity}</td>
+                  <td>{item.price} €</td>
+                  <td>{item.itemTotal} €</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </ul>
+        <div className="total">Total: {formatNumber(cartTotal)} €</div>
       </div>
       <div className="bloc-droit">
         <PaymentElement id="payment-element" />
@@ -70,7 +68,6 @@ export default function CheckOutForm({ panier }) {
             {isProcessing ? "Processing ... " : "Payer maintenant"}
           </span>
         </button>
-        {/* Show any error or success messages */}
         {message && <div id="payment-message">{message}</div>}
       </div>
     </form>

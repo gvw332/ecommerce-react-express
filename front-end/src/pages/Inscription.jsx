@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useContext} from "react";
 import "../css/Inscription.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { GetUrl } from "../App";
+
 
 function Inscription() {
   const [pseudo, setPseudo] = useState("");
@@ -12,10 +16,10 @@ function Inscription() {
   const [mdpbis, setMdpbis] = useState("");
   const navigate = useNavigate();
   const [error, setError] = useState("");
-  const [shouldFetchProducts, setShouldFetchProducts] = useState(false);
-  const [myURL, setMyURL] = useState('');
-
+  const myUrl = useContext(GetUrl);
+  
   const handleInscription = (e) => {
+  
     e.preventDefault();
     const formData = new FormData();
     formData.append('pseudo', pseudo);
@@ -24,40 +28,40 @@ function Inscription() {
     formData.append('mail', mail);
     formData.append('mdp', mdp);
     formData.append('mdpbis', mdpbis);
-    const [shouldFetchProducts, setShouldFetchProducts] = useState(false);
-  }
-    useEffect(() => {
-      setMyURL(readMode());
-    }, []);
-
-    useEffect(() => {
-      if (myURL) {
-        setShouldFetchProducts(true);
-      }
-    }, [myURL]);
-
-    useEffect(() => {
-      if (shouldFetchProducts) {
-        getProducts();
-        setShouldFetchProducts(false);
-      }
-
-      axios.post('http://localhost:80/api-php-react/inscription/', formData)
-        .then((response) => {
-
-
-          if (response.data.message === 'OK, bien enregistré') {
+    axios.post(`${myUrl}/inscription/`, formData)
+    .then((response) => {
+       
+        if (response.data.status === 1) {
+          toast.success("Vous avez bien été enregistré, veuillez vous connecter", {
+            position: toast.POSITION.TOP_CENTER,
+          }); 
             navigate('/login');
-          } else {
-            console.log(response.data);
-            setError(response.data);
-          }
-        })
-        .catch((error) => {
-          console.error("Erreur de sauvegarde : " + error);
-        });
+        } else {
+            setError(response.data.message);
+        }
+    })
+    .catch((error) => {
+        console.error("Erreur lors de la récupération des données : " + error);
+    });
+  }
 
-    } 
+  function getInscription() {
+    axios.get(myUrl + '/inscription/')
+      .then((response) => {
+
+        if (response.data.message === 'OK, bien enregistré') {
+          navigate('/login');
+        } else {
+          console.log(response.data);
+          setError(response.data);
+        }
+      })
+      .catch((error) => {
+        console.error("Erreur de sauvegarde : " + error);
+      });
+
+  }
+
 
   return (
     <div className="inscription-page">
