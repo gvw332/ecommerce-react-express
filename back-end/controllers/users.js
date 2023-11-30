@@ -14,7 +14,7 @@ exports.getAllUsers = async (req, res) => {
 exports.getUserById = async (req, res) => {
     try {
         const id = req.params.id;
-        const user = await users.get(id);
+        const user = await users.getId(id);
         console.log(user, 18);
         if(!user[0]){
             res.status(400).json({ message: "Le user " + req.params.id +" n'existe pas" }); 
@@ -76,6 +76,36 @@ exports.deleteUser = async (req, res) => {
             res.status(400).json({ message: "Cet enregistrement n'existe pas" });     
         }
         res.json({ message: 'Suppression réussie' });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+
+exports.getUserAuth = async (req, res) => {
+    try {
+        const { mail, mdp } = req.body;
+        const user = await users.get(mail);
+
+        if (!user || user.length === 0) {
+            return res.status(400).json({ message: "Erreur d'email ou de mot de passe 1 " });
+        }
+
+        const hashedPassword = user[0].mdp;
+        // console.log(user[0].mdp, 95);
+        // console.log(mdp, 96);
+        const match = await bcrypt.compare(mdp, hashedPassword);
+        if (!match) {
+            return res.status(400).json({ message: "Erreur d'email ou de mot de passe 2" });
+        }
+
+        res.status(200).json({
+            user: {
+                mail: user[0].mail,
+                niveau: user[0].niveau,
+                pseudo: user[0].pseudo
+            }
+        });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

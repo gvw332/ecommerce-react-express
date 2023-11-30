@@ -23,7 +23,6 @@ app.use(express.static('public'));
 // CRUD Produits
 app.use('/api/produits', require('./routes/produits.routes'));
 app.use('/api/users', require('./routes/users.routes'));
-app.use('/api/auth', require('./routes/auth.routes'));
 // app.use('/api/produits', (req, res)=>{
 //     console.log(req.body, 26);
 //     res.json({ message: 'ok', status: 1 });

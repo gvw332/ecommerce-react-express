@@ -7,7 +7,8 @@ const { getAllUsers,
         getUserById, 
         modifUser, 
         createUser, 
-        deleteUser
+        deleteUser,
+        getUserAuth
     } = require('../controllers/users');
 //
 // Destination sur ce serveur du répertoire de sauvegarde
@@ -30,6 +31,7 @@ router.get('/', getAllUsers);
 router.get('/:id', getUserById);
 router.put('/:id', modifUser);
 router.delete('/:id', deleteUser);
-router.post('/', createUser); 
+router.post('/', createUser);
+router.post('/auth', getUserAuth); 
 
 module.exports = router;

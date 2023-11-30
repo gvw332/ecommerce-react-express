@@ -12,14 +12,18 @@ class UsersModel {
     return this.model.query(sql);
   }
 
-  get(id) {
+  getId(id) {
     const sql = 'SELECT * FROM users WHERE id = ?';
     return this.model.query(sql, id);
+  }
+  get(mail) {
+    const sql = 'SELECT * FROM users WHERE mail = ?';
+    return this.model.query(sql, mail);
   }
 
   create(data) {
     //console.log(data, 20);
-    const sql = 'INSERT INTO  users (id, nom, prenom, mail, niveau, pseudo, mdp) VALUES (null, ?, ?, ?, ?, ?, ?)';
+    const sql = 'INSERT INTO  users (id, nom, prenom, mail, pseudo, mdp) VALUES (null, ?, ?, ?, ?, ?)';
     return this.model.query(sql, data);
   }
 
