@@ -37,24 +37,35 @@ function Addproduct() {
     if (image) {
       formData.append('image', image, image.name);
     }
-    console.log(image, formData, inputs);
-    axios.post(myUrl + '/ajout-produit/', formData)
-      .then((response) => {
-        setError('');
-        console.log(response.data.status, 44);
-        if (response.data.status === 1) {
-          toast.success('Nouveau produit bien enregistré', {
-            position: toast.POSITION.TOP_CENTER,
-          });
-          navigate('/')
-        }else{
-          setError('Ce titre existe déjà avec une autre image');
-        }
+    // console.log(image, formData, inputs);
 
-      })
-      .catch((error) => {
-        console.error("Erreur lors de la récupération des données : " + error);
-      });
+    var requestOptions = {
+      method: 'POST',
+      body: formData,
+      redirect: 'manual',
+    };
+    fetch(myUrl + '/api/produits/', requestOptions)
+    .then(response => response.json())
+
+    .then(data => {
+
+        console.log(data, 52);        
+       
+        if (data.status === 1) {
+            toast.success('Nouveau produit bien créé', {
+                position: toast.POSITION.TOP_CENTER,
+            });
+            
+            navigate('/');
+        } else {
+            setError('Le titre existe déjà avec une autre image');
+        }
+    })
+    .catch(error => console.error('Erreur :', error));
+        
+      
+   
+
   }
 
 

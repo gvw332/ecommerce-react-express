@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import "../css/Card.css";
 import { useCart } from 'react-use-cart';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { GetUrl } from '../App'; // Chemin mis à jour
 import axios from 'axios';
 import { toast } from "react-toastify";
@@ -18,30 +18,36 @@ const Card = (props) => {
   };
   const { user, setUser } = useContext(UserContext);
   const isAdmin = (user.niveau === 1);
+  const {id} = useParams();
+  
   const handleDelete = (id) => {
-    // console.log('delete', id);
+    
+    props.setRefresh(true);
     const formData = new FormData();
     formData.append('id', id);
-    axios.post(myUrl + '/delete/', formData)
-      .then((response) => {
-        // console.log(response.data, 20);
-        if (response.data.status === 1) {
-          toast.success('Produit bien supprimé', {
-            position: toast.POSITION.TOP_CENTER,
-          });
-          props.onDelete();
-          navigate('/')
-        } else {
-          toast.error('Erreur de suppression', {
-            position: toast.POSITION.TOP_CENTER,
-          });
 
+    var requestOptions = {
+      method: 'DELETE',   
+      body: '',        
+      redirect: 'manual'
+    };
+
+    fetch(myUrl + '/api/produits/' + `${id}`, requestOptions)
+    .then(response => response.json())
+
+    .then(data => {
+
+        console.log(data, 48);
+        
+       
+        if (data.status === 1) {
+            toast.success('Produit bien supprimé', {
+                position: toast.POSITION.TOP_CENTER,
+            });
+            navigate('/');
         }
-
-      })
-      .catch((error) => {
-        console.error("Erreur lors de la récupération des données : " + error);
-      });
+    })
+    .catch(error => console.error('Erreur :', error));
   };
   const handleContextMenu = (e) => {
     e.preventDefault();

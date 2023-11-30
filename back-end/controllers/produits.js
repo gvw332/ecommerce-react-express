@@ -15,7 +15,7 @@ exports.getProduitById = async (req, res) => {
     try {
         const id = req.params.id;
         const produit = await produits.get(id);
-        console.log(produit, 18);
+        // console.log(produit, 18);
         if(!produit[0]){
             res.status(400).json({ message: "Le produit " + req.params.id +" n'existe pas" }); 
         }
@@ -35,7 +35,7 @@ exports.createProduit = async (req, res) => {
         const data = [title, price, details, image.filename];
         const response = await produits.create(data); 
         //console.log('produit ajouté :' + req.file.filename,  34);
-        res.json({ message: "Nouveau Produit bien créé", status: 1 });
+        res.status(200).json({ message: "Nouveau produit bien ajouté", status: 1 });
     } catch (error) {
         res.status(500).json({ error: error.message, status: 0 });
     }
@@ -62,7 +62,10 @@ exports.deleteProduit = async (req, res) => {
         if(!produit){
             res.status(400).json({ message: "Cet enregistrement n'existe pas" });     
         }
-        res.json({ message: 'Suppression réussie' });
+        res.json({ 
+            message: 'Suppression réussie', 
+            status : 1 
+        });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

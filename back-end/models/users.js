@@ -22,7 +22,7 @@ class UsersModel {
   }
 
   create(data) {
-    //console.log(data, 20);
+      
     const sql = 'INSERT INTO  users (id, nom, prenom, mail, pseudo, mdp) VALUES (null, ?, ?, ?, ?, ?)';
     return this.model.query(sql, data);
   }

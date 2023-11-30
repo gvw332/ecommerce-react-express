@@ -9,31 +9,36 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Accueil() {
-    const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [data, setData] = useState([]);    
     const myUrl = useContext(GetUrl);
     const { user, setUser } = useContext(UserContext);
     const isAdmin = (user.niveau === 1);
-
+    const [refresh, setRefresh] = useState(false);
     
     useEffect(() => {
-        getProducts();
+        getProducts();       
     }, []);
-
-
-    function handleProductDelete(productId) {
-        // Supprimez le produit du tableau data
-        const updatedData = data.filter(item => item.id !== productId);
-        setData(updatedData);
-    }
+    useEffect(() => {
+        if(refresh){
+            getProducts();
+            setRefresh(false);
+        }
+    }, [refresh]);
+    console.log(refresh,27);
+    
 
     function getProducts() {
+        var requestOptions = {
+            method: 'GET',           
+            redirect: 'manual'
+          };
 
-        fetch(`${myUrl}/api/produits`) // Remplacez le port si nécessaire
+        fetch(`${myUrl}/api/produits`, requestOptions)
+      
             .then(response => response.json())
 
             .then(data => {
-                //console.log('Data:',data.articles);
+                
                 setData(data.produits);
             })
             .catch(error => console.error('Erreur :', error));
@@ -55,7 +60,7 @@ function Accueil() {
                 <div className="cards-container">
                     {Array.isArray(data) ? (
                         data.map((item, key) => (
-                            <div className="card-accueil">
+                            <div className="card-accueil" key={key}>
                                 <Card
                                     id={item.id}
                                     key={key}
@@ -64,7 +69,7 @@ function Accueil() {
                                     price={item.price}
                                     details={item.details}
                                     item={item}
-                                    onDelete={() => handleProductDelete(item.id)}     
+                                    setRefresh = {setRefresh}   
                                 />
                             </div>
                         ))

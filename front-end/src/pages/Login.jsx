@@ -20,16 +20,31 @@ function Login() {
     const handleSubmit = (e) => {
 
         e.preventDefault();
-        const formData = new FormData();
-        formData.append('mail', mail);
-        formData.append('mdp', mdp);
+        // const formData = new FormData();
+        // formData.append('mail', mail);
+        // formData.append('mdp', mdp);
+        const data = {
+            'mail': mail,
+            'mdp': mdp,         
+        };
+        
+        var requestOptions = {
+            method: 'POST',
+            body: JSON.stringify(data),
+            redirect: 'manual',
+            headers: {
+                "Content-Type": "application/json"
+            }
+          };
+       fetch(`${myUrl}/api/users/auth`, requestOptions)
+            .then(response => response.json())
 
+            .then(data => {
 
-        axios.post(`${myUrl}/login/`, formData)
-            .then((response) => {
+                console.log(data, 48);
                 
-                const userData = response.data.user;
-                if (response.data.message === 'Connexion réussie') {
+                const userData = data.user;
+                if (data.message === 'ok') {
                     toast.success(`Connexion réussie, bienvenue  ${userData.pseudo}`, {
                         position: toast.POSITION.TOP_CENTER,
                     });
@@ -48,9 +63,10 @@ function Login() {
                     setError('Mauvais identifiant');
                 }
             })
-            .catch((error) => {
-                console.error("Erreur lors de la récupération des données : " + error);
-            });
+            .catch(error => console.error('Erreur :', error));
+                
+              
+           
 
     }
 

@@ -16,29 +16,34 @@ exports.getUserById = async (req, res) => {
         const id = req.params.id;
         const user = await users.getId(id);
         console.log(user, 18);
-        if(!user[0]){
-            res.status(400).json({ message: "Le user " + req.params.id +" n'existe pas" }); 
+        if (!user[0]) {
+            res.status(400).json({ message: "Le user " + req.params.id + " n'existe pas" });
         }
         res.json(user[0]);
     } catch (error) {
         res.status(500).json({ error: error.message });
-        
+
     }
 };
 
 exports.createUser = async (req, res) => {
     try {
-        const { nom, prenom, mail, niveau, pseudo, mdp } = req.body;
+        const { nom, prenom, mail, pseudo, mdp, mdpbis } = req.body;
+        console.log(mdp, 32)
+        console.log(mdpbis, 33)
+        if (mdp !== mdpbis) {
 
+            res.status(400).json({ message: "Les mdp ne concordent pas", status: 0 });
+        }
         // Hacher le mot de passe
         const salt = await bcrypt.genSalt(10); // Générer un sel
         const hashedPassword = await bcrypt.hash(mdp, salt); // Hacher le mot de passe avec le sel
 
         // Préparer les données pour la création de l'utilisateur
-        const data = [nom, prenom, mail, niveau, pseudo, hashedPassword]; 
+        const data = [nom, prenom, mail, pseudo, hashedPassword];
 
         // Créer l'utilisateur avec le mot de passe haché
-        const response = await users.create(data); 
+        const response = await users.create(data);
         res.json({ message: "Nouvel utilisateur bien créé", status: 1 });
     } catch (error) {
         res.status(500).json({ error: error.message, status: 0 });
@@ -49,12 +54,12 @@ exports.createUser = async (req, res) => {
 exports.modifUser = async (req, res) => {
     const id = parseInt(req.params.id, 10);
     const data = [
-        req.body.nom, 
-        req.body.prenom, 
+        req.body.nom,
+        req.body.prenom,
         req.body.mail,
         req.body.niveau,
         req.body.pseudo,
-        req.body.mdp, 
+        req.body.mdp,
         id
     ];
 
@@ -72,8 +77,8 @@ exports.deleteUser = async (req, res) => {
     try {
         const id = req.params.id;
         const user = await users.delete(id);
-        if(!user){
-            res.status(400).json({ message: "Cet enregistrement n'existe pas" });     
+        if (!user) {
+            res.status(400).json({ message: "Cet enregistrement n'existe pas" });
         }
         res.json({ message: 'Suppression réussie' });
     } catch (error) {
@@ -86,7 +91,7 @@ exports.getUserAuth = async (req, res) => {
     try {
         const { mail, mdp } = req.body;
         const user = await users.get(mail);
-
+        //  console.log(req.body, 89);
         if (!user || user.length === 0) {
             return res.status(400).json({ message: "Erreur d'email ou de mot de passe 1 " });
         }
@@ -100,6 +105,7 @@ exports.getUserAuth = async (req, res) => {
         }
 
         res.status(200).json({
+            message: 'ok',
             user: {
                 mail: user[0].mail,
                 niveau: user[0].niveau,
