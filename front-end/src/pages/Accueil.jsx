@@ -13,20 +13,16 @@ function Accueil() {
     const myUrl = useContext(GetUrl);
     const { user, setUser } = useContext(UserContext);
     const isAdmin = (user.niveau === 1);
-    const [refresh, setRefresh] = useState(false);
+    
     
     useEffect(() => {
         getProducts();       
     }, []);
-    useEffect(() => {
-        if(refresh){
-            getProducts();
-            setRefresh(false);
-        }
-    }, [refresh]);
-    console.log(refresh,27);
-    
 
+    const handleProductDelete = (deletedProductId) => {
+        const updatedProducts = data.filter(product => product.id !== deletedProductId);
+        setData(updatedProducts);
+      };
     function getProducts() {
         var requestOptions = {
             method: 'GET',           
@@ -69,7 +65,8 @@ function Accueil() {
                                     price={item.price}
                                     details={item.details}
                                     item={item}
-                                    setRefresh = {setRefresh}   
+                                    onDelete={handleProductDelete}
+
                                 />
                             </div>
                         ))

@@ -11,6 +11,7 @@ import Details from "./pages/Details";
 import Panier from "./pages/Panier";
 import Paiement from "./pages/Paiement";
 import SuccessPaiement from "./pages/Success-Paiement";
+import ResetMdp from "./pages/Reset-mdp";
 import { Page404 } from "./pages/Page404";
 
 
@@ -61,7 +62,8 @@ function App() {
               <Route path="/details/:title" element={<Details />} />
               <Route path="/panier" element={<Panier />} />
               <Route path="/paiement" element={<Paiement />} />
-              <Route path="/success-paiement" element={<SuccessPaiement />} />              
+              <Route path="/success-paiement" element={<SuccessPaiement />} />       
+              <Route path="/reset-mdp" element={<ResetMdp />} />        
               <Route path="*" element={<Page404 />} />
             </Routes>
           </UserContext.Provider>

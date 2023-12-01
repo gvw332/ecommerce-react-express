@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 
@@ -23,14 +25,12 @@ app.use(express.static('public'));
 // CRUD Produits
 app.use('/api/produits', require('./routes/produits.routes'));
 app.use('/api/users', require('./routes/users.routes'));
+app.use('/api/mail', require('./routes/mail.routes'));
 
 
 // Stripe
 // app.use('/api/stripe', require('./routes/stripe.routes'));
 
-// Tests ci-dessous ---------------------------------------------------------
-// app.use('/payment', require('./routes/payment.routes'));    // Version 1
-// app.use('/payment2', require('./routes/payment2.routes'));   // Version 2
 
 // Démarrage du serveur
 app.listen(PORT, () => {

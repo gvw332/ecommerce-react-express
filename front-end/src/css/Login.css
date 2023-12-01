@@ -54,7 +54,11 @@
   border: 1px solid #ccc;
   border-radius: 5px;
 }
-
+.login-page .champ-mdp input {
+  width: 85%;
+  margin-right: 5px;
+  letter-spacing: 3px;
+}
 .link-mdp a,.link-inscri a{
   width:100%;
   

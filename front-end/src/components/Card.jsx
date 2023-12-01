@@ -19,10 +19,8 @@ const Card = (props) => {
   const { user, setUser } = useContext(UserContext);
   const isAdmin = (user.niveau === 1);
   const {id} = useParams();
-  
+
   const handleDelete = (id) => {
-    
-    props.setRefresh(true);
     const formData = new FormData();
     formData.append('id', id);
 
@@ -34,21 +32,21 @@ const Card = (props) => {
 
     fetch(myUrl + '/api/produits/' + `${id}`, requestOptions)
     .then(response => response.json())
-
     .then(data => {
-
-        console.log(data, 48);
-        
+      if (data.status === 1) {
+        toast.success('Produit bien supprimé', {
+          position: toast.POSITION.TOP_CENTER,
+        });
+        props.onDelete(id); // Appeler la fonction de rappel
        
-        if (data.status === 1) {
-            toast.success('Produit bien supprimé', {
-                position: toast.POSITION.TOP_CENTER,
-            });
-            navigate('/');
-        }
+      }
     })
     .catch(error => console.error('Erreur :', error));
   };
+
+
+
+
   const handleContextMenu = (e) => {
     e.preventDefault();
   };

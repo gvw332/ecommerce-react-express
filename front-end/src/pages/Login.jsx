@@ -6,6 +6,10 @@ import { UserContext } from "../App";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { GetUrl } from "../App";
+import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+
+
+
 
 function Login() {
     const navigate = useNavigate();
@@ -15,6 +19,10 @@ function Login() {
     const [msg, setMsg] = useState("");
     const { user, setUser } = useContext(UserContext);
     const myUrl = useContext(GetUrl);
+    const [showPassword, setShowPassword] = useState(false);
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
 
     const handleSubmit = (e) => {
@@ -85,10 +93,13 @@ function Login() {
                 <div className="champ-mdp">
                     <label>Mot de passe</label>
                     <input
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         value={mdp}
                         onChange={(e) => setMdp(e.target.value)}
                     />
+                    <span onClick={togglePasswordVisibility}>
+                        {showPassword ? <IoEyeOffOutline /> : <IoEyeOutline />}
+                    </span>
                 </div>
                 <div className="link-mdp">
                     <Link to="/">Mot de passe oublié ?</Link>

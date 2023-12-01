@@ -37,8 +37,7 @@ function Addproduct() {
     if (image) {
       formData.append('image', image, image.name);
     }
-    // console.log(image, formData, inputs);
-
+ 
     var requestOptions = {
       method: 'POST',
       body: formData,
@@ -47,9 +46,7 @@ function Addproduct() {
     fetch(myUrl + '/api/produits/', requestOptions)
     .then(response => response.json())
 
-    .then(data => {
-
-        console.log(data, 52);        
+    .then(data => {     
        
         if (data.status === 1) {
             toast.success('Nouveau produit bien créé', {
