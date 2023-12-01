@@ -1,0 +1,46 @@
+.password-reset {
+    background-color: #f4f4f4; /* Couleur de fond du conteneur */
+    max-width: 400px; /* Largeur maximale du conteneur */
+    margin: 50px auto; /* Centrer le conteneur */
+    padding: 20px; /* Padding intérieur */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre extérieure */
+    border-radius: 8px; /* Bords arrondis */
+}
+
+.password-reset h2 {
+    color: #333; /* Couleur du texte */
+    text-align: center; /* Alignement du texte */
+    margin-bottom: 20px; /* Marge en bas du titre */
+}
+
+.password-reset .champ-email {
+    margin-bottom: 20px; /* Marge en bas du champ */
+}
+
+.password-reset label {
+    display: block; /* Affichage en bloc */
+    margin-bottom: 5px; /* Marge en bas du label */
+    color: #666; /* Couleur du texte */
+}
+
+.password-reset input[type="email"] {
+    width: 100%; /* Largeur complète */
+    padding: 10px; /* Padding intérieur */
+    border: 1px solid #ddd; /* Bordure */
+    border-radius: 4px; /* Bords arrondis */
+}
+
+.password-reset button {
+    width: 100%; /* Largeur complète */
+    padding: 10px; /* Padding intérieur */
+    border: none; /* Pas de bordure */
+    background-color: #5c6bc0; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    border-radius: 4px; /* Bords arrondis */
+    cursor: pointer; /* Curseur pointeur */
+    transition: background-color 0.3s; /* Transition pour l'effet au survol */
+}
+
+.password-reset button:hover {
+    background-color: #3949ab; /* Couleur de fond au survol */
+}

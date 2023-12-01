@@ -102,7 +102,7 @@ function Login() {
                     </span>
                 </div>
                 <div className="link-mdp">
-                    <Link to="/">Mot de passe oublié ?</Link>
+                    <Link to="/reset-mdp">Mot de passe oublié ?</Link>
                 </div>
                 <br />
                 <div className="link-inscri">

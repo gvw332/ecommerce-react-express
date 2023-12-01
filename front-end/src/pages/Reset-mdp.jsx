@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { GetUrl } from "../App";
 import { toast } from "react-toastify";
-
+import "../css/Reset-mdp.css";
 function ResetMdp() {
     const [email, setEmail] = useState("");
     const myUrl = useContext(GetUrl);
