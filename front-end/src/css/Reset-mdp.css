@@ -24,7 +24,7 @@
 }
 
 .password-reset input[type="email"] {
-    width: 100%; /* Largeur complète */
+    width: 95%; /* Largeur complète */
     padding: 10px; /* Padding intérieur */
     border: 1px solid #ddd; /* Bordure */
     border-radius: 4px; /* Bords arrondis */

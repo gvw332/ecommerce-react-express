@@ -1,31 +1,41 @@
 import React, { useState, useContext } from "react";
 import { GetUrl } from "../App";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import "../css/Reset-mdp.css";
+
+
 function ResetMdp() {
-    const [email, setEmail] = useState("");
+    const [mail, setMail] = useState("");
     const myUrl = useContext(GetUrl);
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         // Ici, ajoutez la logique pour gérer la demande de réinitialisation du mot de passe.
-        fetch(`${myUrl}/api/users/password-reset`, {
+        fetch(`${myUrl}/api/users/reset-mdp`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ email })
+            body: JSON.stringify({ mail })
         })
-        .then(response => response.json())
-        .then(data => {
-            // Gérer la réponse, par exemple, informer l'utilisateur qu'un e-mail a été envoyé
-            toast.info("Un e-mail de réinitialisation a été envoyé si l'adresse est dans notre base de données.");
-        })
-        .catch(error => {
-            console.error('Erreur:', error);
-        });
-    };
+            .then(response => response.json())
+            .then(data => {
+                /* console.log('Réponse:',data, 21); */
+                if (data.status === 1) {
+                    toast.success(`Un e-mail de réinitialisation a été envoyé à l'adresse "${mail}".`);
+                    navigate('/');
+                } else {
+                    toast.error(data.message);
+                }
 
+
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+            });
+    }
     return (
         <div className="password-reset">
             <h2>Réinitialisation du Mot de Passe</h2>
@@ -34,8 +44,8 @@ function ResetMdp() {
                     <label>Email</label>
                     <input
                         type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        value={mail}
+                        onChange={(e) => setMail(e.target.value)}
                     />
                 </div>
                 <button type="submit">Envoyer le Lien de Réinitialisation</button>

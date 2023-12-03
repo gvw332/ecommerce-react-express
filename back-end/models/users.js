@@ -31,6 +31,10 @@ class UsersModel {
     const sql = 'UPDATE users SET nom = ?, prenom = ?, mail = ?, niveau = ?, pseudo = ?, mdp = ? WHERE id = ?';
     return this.model.query(sql, data);
   }
+  newMdp(data) {
+    const sql = 'UPDATE users SET  mdp = ? WHERE mail = ?';
+    return this.model.query(sql, data);
+  }
 
   delete(id) {
     const sql = 'DELETE FROM users WHERE id = ?';

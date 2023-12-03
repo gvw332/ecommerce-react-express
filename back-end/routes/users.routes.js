@@ -9,6 +9,8 @@ const { getAllUsers,
         createUser, 
         deleteUser,
         getUserAuth,
+        setLink, 
+        setNewMdp
         
     } = require('../controllers/users');
 //
@@ -34,6 +36,6 @@ router.put('/:id', modifUser);
 router.delete('/:id', deleteUser);
 router.post('/', createUser);
 router.post('/auth', getUserAuth); 
-
-
+router.post('/reset-mdp', setLink); 
+router.post('/new-mdp', setNewMdp);
 module.exports = router;
