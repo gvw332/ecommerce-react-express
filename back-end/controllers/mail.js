@@ -3,7 +3,7 @@ const transporter = require('../confignodemailer');
 const EnvoiMail = async (to, subject, text) => {
 
     let mailOptions = {
-        from: 'g.vw@hotmail.com',
+        from: 'mail@gvw-tech.be',
         to: to,
         subject: subject,
         html: text === 'OK' ?
@@ -31,9 +31,7 @@ const EnvoiMail = async (to, subject, text) => {
             </html>
 
             `
-
     };
-
 
     try {
         let info = await transporter.sendMail(mailOptions);

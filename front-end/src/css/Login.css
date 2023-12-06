@@ -49,10 +49,18 @@
 /* Styles for the email and password input fields */
 .login-page .champ-email input,
 .login-page .champ-mdp input {
-  width: 90%;
+  width: 85%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+.champ-mdp-bis input{
+  width: 85%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 5px;
+  letter-spacing: 3px;
 }
 .login-page .champ-mdp input {
   width: 85%;

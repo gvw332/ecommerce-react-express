@@ -11,7 +11,6 @@ class UsersModel {
     const sql = 'SELECT * FROM users';
     return this.model.query(sql);
   }
-
   getId(id) {
     const sql = 'SELECT * FROM users WHERE id = ?';
     return this.model.query(sql, id);
@@ -20,13 +19,11 @@ class UsersModel {
     const sql = 'SELECT * FROM users WHERE mail = ?';
     return this.model.query(sql, mail);
   }
-
   create(data) {
       
     const sql = 'INSERT INTO  users (id, nom, prenom, mail, pseudo, mdp) VALUES (null, ?, ?, ?, ?, ?)';
     return this.model.query(sql, data);
   }
-
   modif(data) {
     const sql = 'UPDATE users SET nom = ?, prenom = ?, mail = ?, niveau = ?, pseudo = ?, mdp = ? WHERE id = ?';
     return this.model.query(sql, data);
@@ -35,7 +32,6 @@ class UsersModel {
     const sql = 'UPDATE users SET  mdp = ? WHERE mail = ?';
     return this.model.query(sql, data);
   }
-
   delete(id) {
     const sql = 'DELETE FROM users WHERE id = ?';
     return this.model.query(sql, id);

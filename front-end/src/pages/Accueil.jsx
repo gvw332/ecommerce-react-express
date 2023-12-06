@@ -7,51 +7,68 @@ import { UserContext } from "../App";
 import { GetUrl } from "../App";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FaSquareXTwitter } from "react-icons/fa6";
+import { TiSocialLinkedin } from "react-icons/ti";
+import { FaConnectdevelop } from "react-icons/fa6";
+import Modal from "../components/Modal";
+import "../css/Modal.css";
+
 
 function Accueil() {
-    const [data, setData] = useState([]);    
+    const [data, setData] = useState([]);
     const myUrl = useContext(GetUrl);
     const { user, setUser } = useContext(UserContext);
     const isAdmin = (user.niveau === 1);
-    
-    
+
+
     useEffect(() => {
-        getProducts();       
+        getProducts();
     }, []);
 
     const handleProductDelete = (deletedProductId) => {
         const updatedProducts = data.filter(product => product.id !== deletedProductId);
         setData(updatedProducts);
-      };
+    };
+
     function getProducts() {
         var requestOptions = {
-            method: 'GET',           
+            method: 'GET',
             redirect: 'manual'
-          };
+        };
 
         fetch(`${myUrl}/api/produits`, requestOptions)
-      
+
             .then(response => response.json())
 
             .then(data => {
-                
+
                 setData(data.produits);
             })
             .catch(error => console.error('Erreur :', error));
 
     }
 
+    const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
+    const [isLegalModalOpen, setIsLegalModalOpen] = useState(false);
+
+    const openTermsModal = () => setIsTermsModalOpen(true);
+    const closeTermsModal = () => setIsTermsModalOpen(false);
+    const openLegalModal = () => setIsLegalModalOpen(true);
+    const closeLegalModal = () => setIsLegalModalOpen(false);
+
+
 
     return (
-        <div className="accueil">
+        <>
+            <div className="accueil">
 
-            {isAdmin && <div className="btn-ajout-produit">
-                <Link to="/add-product">
-                    <button className="custom-btn btn-12"><span>+</span><span>Ajouter un produit</span></button>
-                </Link></div>
-            }
+                {isAdmin && <div className="btn-ajout-produit">
+                    <Link to="/add-product">
+                        <button className="custom-btn btn-12"><span>+</span><span>Ajouter un produit</span></button>
+                    </Link></div>
+                }
 
-            <h1>Liste des produits</h1>
+                <h1>Liste des produits</h1>
 
                 <div className="cards-container">
                     {Array.isArray(data) ? (
@@ -75,9 +92,26 @@ function Accueil() {
 
                     )}
                 </div>
-            
+            </div>
 
-        </div>
+            <div className="footer">
+                <ul className="res-soc">
+                    <a href="https://twitter.com/BachiBoo" className="twitter" target="_blank">
+                        <li><FaSquareXTwitter /></li>
+                    </a>
+                    <a href="https://www.linkedin.com/in/gaël-van-wymeersch-20267087/" className="linkedin" target="_blank">
+                        <li><TiSocialLinkedin /></li>
+                    </a>
+                    <a href="https://portfolio.gvw-tech.be" className="portfolio" target="_blank">
+                        <li><FaConnectdevelop /></li>
+                    </a>
+                </ul>
+                <ul className="rules">
+                    <Modal />
+                </ul>
+            </div>
+        </>
+
     )
 }
 

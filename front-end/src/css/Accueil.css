@@ -4,22 +4,27 @@
   margin: 0;
   padding: 0;
 }
-body{
+
+body {
   background-image: url('../../images/fond-ecran.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  background-attachment: fixed; /* Ceci fixe l'arrière-plan par rapport à la fenêtre d'affichage */
+  background-attachment: fixed;
+  /* Ceci fixe l'arrière-plan par rapport à la fenêtre d'affichage */
 }
-.accueil {  
+
+.accueil {
   padding: 50px;
   background-image: url('../../images/fond-ecran.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  background-attachment: fixed; /* Ceci fixe l'arrière-plan par rapport à la fenêtre d'affichage */
+  background-attachment: fixed;
+  /* Ceci fixe l'arrière-plan par rapport à la fenêtre d'affichage */
   height: 100%;
 }
+
 .cards-container {
   width: 60vw;
   max-width: auto;
@@ -147,25 +152,26 @@ h1 {
 
 @media only screen and (max-width: 321px) {
 
-  .accueil h1{
-    margin:0;
+  .accueil h1 {
+    margin: 0;
     width: auto;
     text-align: center;
   }
-  
+
 }
 
 
 @media only screen and (max-width: 400px) {
 
-  .card-accueil{
-      width:auto;
-      padding:0;
-      margin:0;
+  .card-accueil {
+    width: auto;
+    padding: 0;
+    margin: 0;
 
   }
+
   .accueil {
-    
+
 
     padding: 50px;
     background: #f2f2f2;
@@ -190,4 +196,53 @@ h1 {
     flex-wrap: wrap;
     gap: 15px;
   }
+
+}
+
+
+.footer {
+  padding-top: 15px;
+  margin-top: 170px;
+  
+  width: 100%;
+  background-color: rgba(239, 238, 238, 0.794);
+  
+}
+
+.res-soc {
+  font-size: 2.5em;
+  max-width: 300px;
+  margin: auto;
+  display: flex;
+  height: auto;
+  justify-content: space-around;
+  align-items: center;
+}
+
+a {
+  color: black;
+}
+
+.res-soc li {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.res-soc li:hover {
+  font-size: 1.2em;
+  transition: 0.3s;
+}
+
+.rules {
+  display: flex;
+  width: 33%;
+  margin: auto;  
+  justify-content: space-around;
+  align-items: center;
+}
+
+.rules li {
+  margin: 10px;
+  text-decoration: none;
+  list-style-type: none;
 }

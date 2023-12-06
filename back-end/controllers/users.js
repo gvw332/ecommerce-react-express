@@ -147,6 +147,7 @@ exports.setLink = async (req, res) => {
             const result = await recovers.modif(data);
         }
         // Envoi du mail
+       
         try {
             const result = await EnvoiMail(mail, 'Réinitialisation de mot de passe', resetLink);
             res.status(200).json({ status: 1, message: 'Email envoyé avec succès' });

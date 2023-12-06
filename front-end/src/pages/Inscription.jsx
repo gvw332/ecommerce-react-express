@@ -31,7 +31,7 @@ function Inscription() {
       setError("Tous les champs sont obligatoires");
       return false;
     }
-    if (!/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(mail)) {
+    if (!/^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(mail)) {
       setError("Format de l'email invalide");
       return false;
     }

@@ -101,10 +101,10 @@ function NewMdp() {
             <form onSubmit={handleSubmit}>
                 <div>Email: {mail}</div>
                 <br />
-                <div>Token: {token}</div>
-                <br />
+                {/* <div>Token: {token}</div> */}
+              
                 <div className="champ-mdp">
-                    <label>Mot de passe</label>
+                    <label>Nouveau mot de passe</label>
                     <input
                         type={showPassword ? "text" : "password"}
                         value={mdp}

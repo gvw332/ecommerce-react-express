@@ -1,7 +1,7 @@
 import React, { useState, createContext, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider } from "react-use-cart";
-
+import { Page404 } from "./pages/Page404";
 import Navigation from "./components/Navigation";
 import Accueil from "./pages/Accueil";
 import Login from "./pages/Login";
@@ -13,7 +13,7 @@ import Paiement from "./pages/Paiement";
 import SuccessPaiement from "./pages/Success-Paiement";
 import ResetMdp from "./pages/Reset-mdp";
 import NewMdp from "./pages/NewMdp";
-import { Page404 } from "./pages/Page404";
+
 
 
 export const UserContext = createContext();
@@ -65,8 +65,9 @@ function App() {
               <Route path="/paiement" element={<Paiement />} />
               <Route path="/success-paiement" element={<SuccessPaiement />} />       
               <Route path="/reset-mdp" element={<ResetMdp />} />    
-              <Route path="/new-mdp" element={<NewMdp />} />     
-              <Route path="*" element={<Page404 />} />
+              <Route path="/new-mdp" element={<NewMdp />} />              
+              <Route path="*" element={<Page404 />} />              
+              
             </Routes>
           </UserContext.Provider>
         </GetUrl.Provider>

@@ -11,7 +11,6 @@ class RecoversModel {
     const sql = 'SELECT * FROM recover';
     return this.model.query(sql);
   }
-
   getId(id) {
     const sql = 'SELECT * FROM recover WHERE id = ?';
     return this.model.query(sql, id);
@@ -20,18 +19,15 @@ class RecoversModel {
     const sql = 'SELECT * FROM recover WHERE mail = ?';
     return this.model.query(sql, mail);
   }
-
   create(data) {
       
     const sql = 'INSERT INTO  recover (id, token, mail ) VALUES (null, ?, ?)';
     return this.model.query(sql, data);
   }
-
   modif(data) {
     const sql = 'UPDATE recover SET token = ? WHERE mail = ?';
     return this.model.query(sql, data);
   }
-
   delete(mail) {
     const sql = 'DELETE FROM recover WHERE mail = ?';
     return this.model.query(sql, mail);
